@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
+import 'package:dropdown_search/dropdown_search.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  List<Map<String, String>> courierList = [
+    {"courier_id": "1", "courier_name": "JNE Express"},
+    {"courier_id": "2", "courier_name": "J&T Express"},
+    {"courier_id": "3", "courier_name": "SiCepat Express"},
+    {"courier_id": "4", "courier_name": "POS Indoensia"},
+    {"courier_id": "5", "courier_name": "AnterAja"},
+    {"courier_id": "6", "courier_name": "Ninja Express"},
+    {"courier_id": "7", "courier_name": "Shopee Express"},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -46,10 +54,43 @@ class HomeView extends GetView<HomeController> {
               ),
 
               //Courier Options Dropdown
+              SizedBox(
+                height: 60,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 15,
+                        offset: const Offset(0, 4),
+                      )
+                    ]),
+                    child: DropdownSearch<Map<String, String>>(
+                      popupProps: PopupProps.menu(),
+                      items: courierList,
+                      itemAsString: (item) => item["courier_name"].toString(),
+                      onChanged: (value) => print(value),
+                      dropdownDecoratorProps: DropDownDecoratorProps(
+                          dropdownSearchDecoration: InputDecoration(
+                            
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none),
+                              label: Text("Pilih Kurir"),
+                              labelStyle: TextStyle(
+                                  fontFamily: "Poppins",
+                                  color: Color(0xFF8a8a8a),
+                                  fontWeight: FontWeight.w400))),
+                    )),
+              ),
 
               //AWB Field
               SizedBox(
-                height: 60,
+                height: 24,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
