@@ -68,13 +68,17 @@ class HomeView extends GetView<HomeController> {
                       )
                     ]),
                     child: DropdownSearch<Map<String, String>>(
-                      popupProps: PopupProps.menu(),
+                      popupProps: PopupProps.menu(
+                          menuProps: MenuProps(
+                              barrierColor: Colors.black.withOpacity(0.3),
+                              shadowColor: Colors.black.withOpacity(0.3),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)))),
                       items: courierList,
                       itemAsString: (item) => item["courier_name"].toString(),
                       onChanged: (value) => print(value),
                       dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
-                            
                               filled: true,
                               fillColor: Colors.white,
                               border: OutlineInputBorder(
