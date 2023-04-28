@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:cek_resi/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../data/providers/summary_provider.dart';
-import '../../../data/models/summary_model.dart';
-import '../controllers/home_controller.dart';
+import '../views/home_view.dart';
 
 Widget makeDismissible({required Widget child}) => GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -76,7 +75,7 @@ Widget resultSheet() => makeDismissible(
                       ],
                     ),
                     child: FutureBuilder(
-                        future: HomeController().getSummary(),
+                        future: HomeController().getDataSummary(),
                         builder: (context, snap) {
                           return Card(
                             elevation: 0,
@@ -103,7 +102,7 @@ Widget resultSheet() => makeDismissible(
                                                     height: 1.5,
                                                     fontSize: 10,
                                                     color: Color(0xFF7a7a7a))),
-                                            Text("1234567890",
+                                            Text("${snap.data?.awb}",
                                                 style: TextStyle(
                                                     fontFamily: "Poppins",
                                                     fontWeight: FontWeight.w600,
@@ -145,7 +144,7 @@ Widget resultSheet() => makeDismissible(
                                                     height: 1.5,
                                                     fontSize: 10,
                                                     color: Color(0xFF7a7a7a))),
-                                            Text("REG",
+                                            Text("${snap.data?.service}",
                                                 style: TextStyle(
                                                     fontFamily: "Poppins",
                                                     fontWeight: FontWeight.w600,

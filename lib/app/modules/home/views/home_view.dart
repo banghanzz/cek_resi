@@ -167,7 +167,6 @@ class HomeView extends GetView<HomeController> {
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                     );
-                    controller.cekResi();
                   },
                   child: Text("LACAK PAKET"),
                   style: ElevatedButton.styleFrom(
