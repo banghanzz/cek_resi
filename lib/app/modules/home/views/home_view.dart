@@ -1,19 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:http/http.dart';
 import '../controllers/home_controller.dart';
-import '../widgets/result_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   List<Map<String, String>> courierList = [
-    {"courier_id": "1", "courier_name": "JNE Express"},
-    {"courier_id": "2", "courier_name": "J&T Express"},
-    {"courier_id": "3", "courier_name": "SiCepat Express"},
-    {"courier_id": "4", "courier_name": "POS Indoensia"},
-    {"courier_id": "5", "courier_name": "AnterAja"},
-    {"courier_id": "6", "courier_name": "Ninja Express"},
-    {"courier_id": "7", "courier_name": "Shopee Express"},
+    {
+      "courier_id": "1",
+      "courier_name": "JNE Express",
+      "courier_inisial": "jne"
+    },
+    {
+      "courier_id": "2",
+      "courier_name": "J&T Express",
+      "courier_inisial": "jnt"
+    },
+    {
+      "courier_id": "3",
+      "courier_name": "SiCepat Express",
+      "courier_inisial": "sicepat"
+    },
+    {
+      "courier_id": "4",
+      "courier_name": "POS Indoensia",
+      "courier_inisial": "pos"
+    },
+    {
+      "courier_id": "5",
+      "courier_name": "AnterAja",
+      "courier_inisial": "anteraja"
+    },
+    {
+      "courier_id": "6",
+      "courier_name": "Ninja Express",
+      "courier_inisial": "ninja"
+    },
+    {
+      "courier_id": "7",
+      "courier_name": "Shopee Express",
+      "courier_inisial": "spx"
+    },
   ];
 
   @override
@@ -78,7 +104,8 @@ class HomeView extends GetView<HomeController> {
                                   borderRadius: BorderRadius.circular(10)))),
                       items: courierList,
                       itemAsString: (item) => item["courier_name"].toString(),
-                      onChanged: (value) => print(value),
+                      onChanged: (value) => controller.courierSelected.value =
+                          value?['courier_inisial'] ?? "",
                       dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
                               filled: true,
@@ -109,6 +136,7 @@ class HomeView extends GetView<HomeController> {
                     )
                   ]),
                   child: TextField(
+                    controller: controller.awbNumberC,
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -131,14 +159,7 @@ class HomeView extends GetView<HomeController> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) => resultSheet(),
-                      backgroundColor: Colors.transparent,
-                      isScrollControlled: true,
-                    );
-                  },
+                  onPressed: () => controller.cekResi(),
                   child: Text("LACAK PAKET"),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7476ED),
