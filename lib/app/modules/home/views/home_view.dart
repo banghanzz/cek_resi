@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import '../controllers/home_controller.dart';
+import '../widgets/result_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   List<Map<String, String>> courierList = [
@@ -159,7 +160,15 @@ class HomeView extends GetView<HomeController> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
-                  onPressed: () => controller.cekResi(),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => resultSheet(),
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                    );
+                    controller.cekResi();
+                  },
                   child: Text("LACAK PAKET"),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7476ED),

@@ -21,4 +21,10 @@ class Detail {
     data['receiver'] = receiver;
     return data;
   }
+
+    static List<Detail> fromJsonList(List? data) {
+    if (data == null || data.length == 0) return [];
+    return data.map((e) => Detail.fromJson(e)).toList();
+  }
+
 }

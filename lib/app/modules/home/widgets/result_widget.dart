@@ -1,5 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../data/providers/summary_provider.dart';
+import '../../../data/models/summary_model.dart';
+import '../controllers/home_controller.dart';
 
 Widget makeDismissible({required Widget child}) => GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -70,244 +75,250 @@ Widget resultSheet() => makeDismissible(
                         )
                       ],
                     ),
-                    child: Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            //No Resi
+                    child: FutureBuilder(
+                        future: HomeController().getSummary(),
+                        builder: (context, snap) {
+                          return Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  //No Resi
 
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Nomor Resi",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("1234567890",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
+
+                                      //Courier Logo
+
+                                      Container(
+                                        child: Image.asset(
+                                          'assets/images/cekresi_logo.png',
+                                          height: 28,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  //Service Courier
+
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Layanan",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("REG",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  //Pengirim & Penerima
+
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+
+                                  Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Nomor Resi",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("1234567890",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
+                                      //Pengirim
+
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Pengirim",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("ANIS",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
+
+                                      //Penerima
+
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Penerima",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("ARIEF RAHMAT HIDAYAT",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                ),
 
-                                //Courier Logo
+                                  //Asal & Tujuan
 
-                                Container(
-                                  child: Image.asset(
-                                    'assets/images/cekresi_logo.png',
-                                    height: 28,
+                                  SizedBox(
+                                    height: 16,
                                   ),
-                                ),
-                              ],
-                            ),
 
-                            //Service Courier
-
-                            SizedBox(
-                              height: 16,
-                            ),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
+                                  Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Layanan",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("REG",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
+                                      //Asal
+
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Asal",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("Tangerang, Banten",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
+
+                                      //Tujuan
+
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Tujuan",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("Cirebon, Jawa Barat",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
 
-                            //Pengirim & Penerima
+                                  //Status
 
-                            SizedBox(
-                              height: 16,
-                            ),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
 
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                //Pengirim
-
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      Text("Pengirim",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("ANIS",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Status",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.5,
+                                                    fontSize: 10,
+                                                    color: Color(0xFF7a7a7a))),
+                                            Text("DELIVERED",
+                                                style: TextStyle(
+                                                    fontFamily: "Poppins",
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1.5,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF555555)))
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                ),
-
-                                //Penerima
-
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Penerima",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("ARIEF RAHMAT HIDAYAT",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
-                                    ],
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-
-                            //Asal & Tujuan
-
-                            SizedBox(
-                              height: 16,
-                            ),
-
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                //Asal
-
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Asal",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("Tangerang, Banten",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
-                                    ],
-                                  ),
-                                ),
-
-                                //Tujuan
-
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Tujuan",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("Cirebon, Jawa Barat",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            //Status
-
-                            SizedBox(
-                              height: 16,
-                            ),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Status",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5,
-                                              fontSize: 10,
-                                              color: Color(0xFF7a7a7a))),
-                                      Text("DELIVERED",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5,
-                                              fontSize: 14,
-                                              color: Color(0xFF555555)))
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          );
+                        }),
                   ),
                 ),
 

@@ -41,4 +41,9 @@ class Summary {
     data['weight'] = weight;
     return data;
   }
+
+  // static List<Summary> fetchAlbum(List? data) {
+  //   if (data == null || data.length == 0) return [];
+  //   return data.map((e) => Summary.fromJson(e)).toList();
+  // }
 }
