@@ -1,24 +1,16 @@
 import 'package:get/get.dart';
 
+import '../../modules/home/controllers/home_controller.dart';
 import '../models/history_model.dart';
 
 class HistoryProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return History.fromJson(map);
-      if (map is List)
-        return map.map((item) => History.fromJson(item)).toList();
-    };
-    httpClient.baseUrl = 'YOUR-API-URL';
-  }
+  Future<History?> getHistory() async {
+    final homeC = Get.put(HomeController());
 
-  Future<History?> getHistory(int id) async {
-    final response = await get('history/$id');
-    return response.body;
+    String apiKey =
+        "15b6c6ef87bd41b5bac89fe094f87cf808af7d6927fb5fde15c4b456533ac1d3";
+    final response = await get(
+        'https://api.binderbyte.com/v1/track?api_key=$apiKey&courier=${homeC.courierSelected.value}&awb=${homeC.awbNumberC.text}');
+    return History.fromJson(response.body['data']['history']);
   }
-
-  Future<Response<History>> postHistory(History history) async =>
-      await post('history', history);
-  Future<Response> deleteHistory(int id) async => await delete('history/$id');
 }
