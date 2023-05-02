@@ -1,7 +1,7 @@
 import 'package:cek_resi/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:timelines/timelines.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 Widget makeDismissible({required Widget child}) => GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -368,58 +368,35 @@ Widget resultSheet() => makeDismissible(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.amber,
+                            child: TimelineTile(
+                              indicatorStyle: IndicatorStyle(
+                                  color: Color(0xFF7476ED), width: 20),
+                              alignment: TimelineAlign.start,
+                              isFirst: true,
+                              endChild: Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("waktu",
+                                        style: TextStyle(
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w400,
+                                            height: 1.5,
+                                            fontSize: 10,
+                                            color: Color(0xFF7a7a7a))),
+                                    Text("deskripsi",
+                                        style: TextStyle(
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.5,
+                                            fontSize: 14,
+                                            color: Color(0xFF555555)))
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                          Container(
-                              color: Colors.greenAccent,
-                              // child: FixedTimeline.tileBuilder(
-                              //   builder: TimelineTileBuilder.connectedFromStyle(
-                              //     contentsAlign: ContentsAlign.basic,
-                              //     oppositeContentsBuilder: (context, index) =>
-                              //         Container(
-                              //       width: 100,
-                              //       color: Colors.pinkAccent,
-                              //       child: Padding(
-                              //         padding: const EdgeInsets.all(8.0),
-                              //         child: Text('keterangan aja'),
-                              //       ),
-                              //     ),
-                              //     contentsBuilder: (context, index) => Container(
-                              //       width: 200,
-                              //       color: Colors.limeAccent,
-                              //       child: Padding(
-                              //         padding: const EdgeInsets.all(8.0),
-                              //         child: Text(
-                              //             'Contents panjanggggggggggggggggggggggggggggggggggggggggg'),
-                              //       ),
-                              //     ),
-                              //     connectorStyleBuilder: (context, index) =>
-                              //         ConnectorStyle.solidLine,
-                              //     indicatorStyleBuilder: (context, index) =>
-                              //         IndicatorStyle.dot,
-                              //     itemCount: 3,
-                              //   ),
-                              // ),
-
-                              child: TimelineTile(
-                                oppositeContents: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('opposite\ncontents'),
-                                ),
-                                contents: Card(
-                                  child: Container(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('contents'),
-                                  ),
-                                ),
-                                node: TimelineNode(
-                                  indicator: DotIndicator(),
-                                  startConnector: SolidLineConnector(),
-                                  endConnector: SolidLineConnector(),
-                                ),
-                              )),
                         ],
                       ),
                     ),
