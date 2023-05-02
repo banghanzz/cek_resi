@@ -19,8 +19,8 @@ class History {
     return data;
   }
 
-  // static List<History> fromJsonList(List? data) {
-  //   if (data == null || data.length == 0) return [];
-  //   return data.map((e) => History.fromJson(e)).toList();
-  // }
+  static List<History> fromJsonList(List? data) {
+    if (data == null || data.length == 0) return [];
+    return data.map((e) => History.fromJson(e)).toList();
+  }
 }

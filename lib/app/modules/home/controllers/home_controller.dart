@@ -27,7 +27,7 @@ class HomeController extends GetxController {
   }
 
   HistoryProvider historyProv = HistoryProvider();
-  Future<History?> getDataHistory() async {
+  Future<List<History>> getDataHistory() async {
     return await historyProv.getHistory();
   }
 }

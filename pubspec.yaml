@@ -9,7 +9,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   dropdown_search: 5.0.6
-  timeline_tile: 2.0.0
   flutter: 
     sdk: flutter
 
