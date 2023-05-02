@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.banghanzz.cek_resi">
    <application
-        android:label="cek_resi"
+        android:label="Cek Resi"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
