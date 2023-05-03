@@ -403,98 +403,50 @@ Widget resultSheet() => makeDismissible(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                FutureBuilder<List<History>>(
+                                FutureBuilder<List<History>?>(
                                     future: HomeController().getDataHistory(),
                                     builder: (context, snap) {
-                                      return ListView.builder(
-                                          shrinkWrap: true,
-                                          physics:
-                                              const ClampingScrollPhysics(),
-                                          itemCount: snap.data?.length,
-                                          itemBuilder: (context, index) {
-                                            if (index == 0) {
-                                              return ListBody(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 16),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                            "${snap.data?[index].date}",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    "Poppins",
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                height: 1.5,
-                                                                fontSize: 10,
-                                                                color: Color(
-                                                                    0xFF7a7a7a))),
-                                                        Text(
-                                                            "${snap.data?[index].desc}",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    "Poppins",
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                height: 1.5,
-                                                                fontSize: 14,
-                                                                color: Color(
-                                                                    0xFF555555))),
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            }
-                                            return ListBody(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                          "${snap.data?[index].date}",
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  "Poppins",
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              height: 1.5,
-                                                              fontSize: 10,
-                                                              color: Color(
-                                                                  0xFF7a7a7a))),
-                                                      Text(
-                                                          "${snap.data?[index].desc}",
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  "Poppins",
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              height: 1.5,
-                                                              fontSize: 14,
-                                                              color: Color(
-                                                                  0xFF555555))),
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            );
-                                          });
+                                      return Text("data ${snap.data?[0].desc}");
+                                      // return ListBody(
+                                      //   children: [
+                                      //     Padding(
+                                      //       padding:
+                                      //           const EdgeInsets.only(
+                                      //               bottom: 16),
+                                      //       child: Column(
+                                      //         crossAxisAlignment:
+                                      //             CrossAxisAlignment
+                                      //                 .start,
+                                      //         children: [
+                                      //           Text(
+                                      //               "${snap.data?[index].date}",
+                                      //               style: TextStyle(
+                                      //                   fontFamily:
+                                      //                       "Poppins",
+                                      //                   fontWeight:
+                                      //                       FontWeight
+                                      //                           .w400,
+                                      //                   height: 1.5,
+                                      //                   fontSize: 10,
+                                      //                   color: Color(
+                                      //                       0xFF7a7a7a))),
+                                      //           Text(
+                                      //               "${snap.data?[index].desc}",
+                                      //               style: TextStyle(
+                                      //                   fontFamily:
+                                      //                       "Poppins",
+                                      //                   fontWeight:
+                                      //                       FontWeight
+                                      //                           .w400,
+                                      //                   height: 1.5,
+                                      //                   fontSize: 14,
+                                      //                   color: Color(
+                                      //                       0xFF555555))),
+                                      //         ],
+                                      //       ),
+                                      //     ),
+                                      //   ],
+                                      // );
                                     }),
                               ],
                             ),
