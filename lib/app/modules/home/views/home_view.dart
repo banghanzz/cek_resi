@@ -213,7 +213,7 @@ class HomeView extends GetView<HomeController> {
 
               //Copyright
               SizedBox(
-                height: 100,
+                height: 120,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

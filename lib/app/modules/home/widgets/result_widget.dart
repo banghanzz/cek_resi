@@ -76,6 +76,7 @@ Widget resultSheet() => makeDismissible(
                             ),
                             TextButton(
                               onPressed: () {
+                                Get.back();
                                 showModalBottomSheet(
                                   context: context,
                                   builder: (context) => resultSheet(),
