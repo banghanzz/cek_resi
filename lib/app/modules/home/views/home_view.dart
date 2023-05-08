@@ -9,37 +9,49 @@ class HomeView extends GetView<HomeController> {
     {
       "courier_id": "1",
       "courier_name": "JNE Express",
-      "courier_inisial": "jne"
+      "courier_inisial": "jne",
+      "logo_url":
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/New_Logo_JNE.png/640px-New_Logo_JNE.png"
     },
     {
       "courier_id": "2",
       "courier_name": "J&T Express",
-      "courier_inisial": "jnt"
+      "courier_inisial": "jnt",
+      "logo_url": "https://jet.co.id/static/images/logo-red.png"
     },
     {
       "courier_id": "3",
       "courier_name": "SiCepat Express",
-      "courier_inisial": "sicepat"
+      "courier_inisial": "sicepat",
+      "logo_url": "https://boostr.id/images/track-shipping/courier/sicepat.png"
     },
     {
       "courier_id": "4",
-      "courier_name": "POS Indoensia",
-      "courier_inisial": "pos"
+      "courier_name": "Shopee Express",
+      "courier_inisial": "spx",
+      "logo_url":
+          "https://lh5.googleusercontent.com/pk28w-cxZU7CAlfMKHUvZT4sXY-FmTmh5-tSL2O1_wBqDbW7Hi8B9276Ri84aUHG-l8CyHNeKTw8nNSDkGO_z-iV_nn6dCn34kuhD5J5Md0zyhCIfJAZESWXOehTdQ3J6UJHJPRW"
     },
     {
       "courier_id": "5",
       "courier_name": "AnterAja",
-      "courier_inisial": "anteraja"
+      "courier_inisial": "anteraja",
+      "logo_url":
+          "https://sejutakurir.com/wp-content/uploads/2020/08/Logo-Anteraja.png"
     },
     {
       "courier_id": "6",
       "courier_name": "Ninja Express",
-      "courier_inisial": "ninja"
+      "courier_inisial": "ninja",
+      "logo_url":
+          "https://seeklogo.com/images/N/ninja-xpress-logo-860168EFBE-seeklogo.com.png"
     },
     {
       "courier_id": "7",
-      "courier_name": "Shopee Express",
-      "courier_inisial": "spx"
+      "courier_name": "POS Indoensia",
+      "courier_inisial": "pos",
+      "logo_url":
+          "https://upload.wikimedia.org/wikipedia/id/thumb/0/00/Pos-Indonesia.svg/1200px-Pos-Indonesia.svg.png"
     },
   ];
 
@@ -105,8 +117,11 @@ class HomeView extends GetView<HomeController> {
                                   borderRadius: BorderRadius.circular(10)))),
                       items: courierList,
                       itemAsString: (item) => item["courier_name"].toString(),
-                      onChanged: (value) => controller.courierSelected.value =
-                          value?['courier_inisial'] ?? "",
+                      onChanged: (value) {
+                        controller.courierLogo.value = value?['logo_url'] ?? "";
+                        controller.courierSelected.value =
+                            value?['courier_inisial'] ?? "";
+                      },
                       dropdownDecoratorProps: DropDownDecoratorProps(
                           dropdownSearchDecoration: InputDecoration(
                               filled: true,

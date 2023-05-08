@@ -141,6 +141,8 @@ Widget resultSheet() => makeDismissible(
                                   child: Padding(
                                     padding: const EdgeInsets.all(16),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
@@ -149,6 +151,8 @@ Widget resultSheet() => makeDismissible(
                                             future: HomeController()
                                                 .getDataSummary(),
                                             builder: (context, snap) {
+                                              final homeC =
+                                                  Get.put(HomeController());
                                               return Row(
                                                 children: [
                                                   Expanded(
@@ -186,11 +190,11 @@ Widget resultSheet() => makeDismissible(
 
                                                   //Courier Logo
                                                   Container(
-                                                    child: Image.asset(
-                                                      'assets/images/cekresi_logo.png',
-                                                      height: 28,
-                                                    ),
-                                                  ),
+                                                      height: 20,
+                                                      child: Image.network(
+                                                        "${homeC.courierLogo.value}",
+                                                        fit: BoxFit.fitHeight,
+                                                      )),
                                                 ],
                                               );
                                             }),

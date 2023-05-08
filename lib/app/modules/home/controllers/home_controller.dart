@@ -12,7 +12,8 @@ import '../../../data/models/history_model.dart';
 
 class HomeController extends GetxController {
   //User Input Controller
-  RxString courierSelected = "null".obs;
+  RxString courierSelected = "".obs;
+  RxString courierLogo = "".obs;
   TextEditingController awbNumberC = TextEditingController();
 
   //Get data controller
